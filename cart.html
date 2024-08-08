@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Fashion Brand</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <!-- Same as above -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shopping Cart - Fashion Brand</title>
+        <link rel="stylesheet" href="styles.css">
+    </header>
+
+    <main>
+        <h1>Your Shopping Cart</h1>
+        <div class="cart-items">
+            <!-- Repeat for each item -->
+            <div class="cart-item">
+                <img src="product2.jpg" alt="Product 2">
+                <div class="item-info">
+                    <h2>Product 2</h2>
+                    <p>Size: L</p>
+                    <p>Price: $59.99</p>
+                    <input type="number" value="1" min="1">
+                    <button>Remove</button>
+                </div>
+                <div class="item-total">
+                    <p>$59.99</p>
+                </div>
+            </div>
+            <div class="cart-item">
+                <img src="product3.jpg" alt="Product 3">
+                <div class="item-info">
+                    <h2>Product 3</h2>
+                    <p>Size: S</p>
+                    <p>Price: $39.99</p>
+                    <input type="number" value="1" min="1">
+                    <button>Remove</button>
+                </div>
+                <div class="item-total">
+                    <p>$39.99</p>
+                </div>
+            </div>
+            <div class="cart-item">
+                <img src="product1.jpg" alt="Product 1">
+                <div class="item-info">
+                    <h2>Product 1</h2>
+                    <p>Size: M</p>
+                    <p>Price: $49.99</p>
+                    <input type="number" value="1" min="1">
+                    <button>Remove</button>
+                </div>
+                <div class="item-total">
+                    <p>$49.99</p>
+                </div>
+            </div>
+            <div class="cart-item">
+                <img src="product1.jpg" alt="Product 1">
+                <div class="item-info">
+                    <h2>Product 1</h2>
+                    <p>Size: M</p>
+                    <p>Price: $49.99</p>
+                    <input type="number" value="1" min="1">
+                    <button>Remove</button>
+                </div>
+                <div class="item-total">
+                    <p>$49.99</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <h2>Order Summary</h2>
+            <p>Subtotal: $49.99</p>
+            <p>Discount: $0.00</p>
+            <p>Total: $49.99</p>
+            <button>Proceed to Checkout</button>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Same as above -->
+        </footer>
+</body>
+</html>
+<script>
+    // Function to remove an item from the cart
+    function removeItem(event) {
+        const cartItem = event.target.closest('.cart-item');
+        cartItem.remove();
+        updateCartSummary();
+    }
+
+    // Function to update the cart summary
+    function updateCartSummary() {
+        const cartItems = document.querySelectorAll('.cart-item');
+        let subtotal = 0;
+
+        cartItems.forEach((item) => {
+            const priceElement = item.querySelector('.item-info p:last-child');
+            const quantityElement = item.querySelector('input[type="number"]');
+            const itemTotalElement = item.querySelector('.item-total p');
+
+            const price = parseFloat(priceElement.textContent.replace('$', ''));
+            const quantity = parseInt(quantityElement.value);
+            const itemTotal = price * quantity;
+
+            itemTotalElement.textContent = '$' + itemTotal.toFixed(2);
+            subtotal += itemTotal;
+        });
+
+        const subtotalElement = document.querySelector('.cart-summary p:nth-child(1)');
+        const discountElement = document.querySelector('.cart-summary p:nth-child(2)');
+        const totalElement = document.querySelector('.cart-summary p:nth-child(3)');
+
+        subtotalElement.textContent = 'Subtotal: $' + subtotal.toFixed(2);
+        discountElement.textContent = 'Discount: $0.00';
+        totalElement.textContent = 'Total: $' + subtotal.toFixed(2);
+    }
+
+    // Add event listeners to remove buttons
+    const removeButtons = document.querySelectorAll('.cart-item button');
+    removeButtons.forEach((button) => {
+        button.addEventListener('click', removeItem);
+    });
+
+    // Add event listener to quantity inputs
+    const quantityInputs = document.querySelectorAll('.cart-item input[type="number"]');
+    quantityInputs.forEach((input) => {
+        input.addEventListener('input', updateCartSummary);
+    });
+</script>

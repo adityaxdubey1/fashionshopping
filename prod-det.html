@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Fashion Brand</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <!-- Same as above -->
+    </header>
+
+    <main>
+        <div class="product-details">
+            <div class="product-image-gallery">
+                <img src="Men-0-1024x1024.png" alt="Product Main">
+                <!-- Thumbnails of additional images -->
+            </div>
+            <div class="product-info">
+                <h1>Product Name</h1>
+                <p>$49.99</p>
+                <p>Description of the product goes here.</p>
+                <div class="product-options">
+                    <select>
+                        <option>Select Size</option>
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                    </select>
+                    <input type="number" value="1" min="1">
+                </div>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="related-products">
+            <h2>You May Also Like</h2>
+            <div class="product-grid">
+                <!-- Related product cards as above -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Same as above -->
+    </footer>
+</body>
+</html>
+<script>
+    // Add your JavaScript code here to add functionality to the page
+    const addToCartButton = document.querySelector('button');
+    addToCartButton.addEventListener('click', function() {
+        // Perform some action when the button is clicked
+        // For example, you can retrieve the selected size and quantity values
+        const selectedSize = document.querySelector('select').value;
+        const quantity = document.querySelector('input[type="number"]').value;
+        
+        // You can then use these values to perform further actions, such as adding the product to the cart
+        console.log('Selected Size:', selectedSize);
+        console.log('Quantity:', quantity);
+        console.log('Add to Cart button clicked');
+        // You can add your logic here, such as adding the product to the cart
+    });
+</script>
